@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Heart, MapPin, Sparkles, User, AlertCircle, Compass } from "lucide-react";
+import {
+  Heart,
+  MapPin,
+  Sparkles,
+  User,
+  AlertCircle,
+  Compass,
+} from "lucide-react";
 import { toast } from "sonner";
 
 export interface Bird {
@@ -82,7 +89,7 @@ export default function BirdCard({ bird, onLike }: BirdCardProps) {
         />
         {/* Soft shadow gradient over image bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent opacity-60 pointer-events-none" />
-        
+
         {/* Sighting Status Badge */}
         <div className="absolute top-4 left-4 z-20">
           {getStatusBadge(bird.status)}
@@ -94,10 +101,14 @@ export default function BirdCard({ bird, onLike }: BirdCardProps) {
           variant="ghost"
           onClick={handleLike}
           className={`absolute top-4 right-4 z-20 h-9 w-9 rounded-full bg-background/80 backdrop-blur-md transition-all duration-300 shadow-sm hover:bg-background ${
-            isLiked ? "text-destructive" : "text-muted-foreground hover:text-destructive"
+            isLiked
+              ? "text-destructive"
+              : "text-muted-foreground hover:text-destructive"
           }`}
         >
-          <Heart className={`h-5 w-5 ${isLiked ? "fill-current scale-110" : "scale-100"}`} />
+          <Heart
+            className={`h-5 w-5 ${isLiked ? "fill-current scale-110" : "scale-100"}`}
+          />
         </Button>
       </div>
 
@@ -117,7 +128,9 @@ export default function BirdCard({ bird, onLike }: BirdCardProps) {
           {/* Location / Habitat */}
           <div className="flex items-center gap-1.5 text-xs md:text-sm text-muted-foreground">
             <MapPin className="h-4 w-4 text-primary shrink-0" />
-            <span className="font-sans truncate font-medium">{bird.location}</span>
+            <span className="font-sans truncate font-medium">
+              {bird.location}
+            </span>
           </div>
 
           {/* Details / Description */}
@@ -131,7 +144,10 @@ export default function BirdCard({ bird, onLike }: BirdCardProps) {
           <div className="flex items-center gap-1.5 min-w-0">
             <User className="h-3.5 w-3.5 text-secondary-foreground/70 shrink-0" />
             <span className="font-sans truncate italic">
-              Logged by <span className="font-medium not-italic text-foreground/90">{bird.contributor}</span>
+              Logged by{" "}
+              <span className="font-medium not-italic text-foreground/90">
+                {bird.contributor}
+              </span>
             </span>
           </div>
           <div className="flex items-center gap-1 text-xs font-sans font-medium text-foreground/70 shrink-0 pl-2">

@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 import { Camera, Sparkles } from "lucide-react";
 
@@ -22,11 +35,17 @@ interface AddBirdDialogProps {
   }) => void;
 }
 
-export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogProps) {
+export default function AddBirdDialog({
+  isOpen,
+  onClose,
+  onAdd,
+}: AddBirdDialogProps) {
   const [name, setName] = useState("");
   const [scientificName, setScientificName] = useState("");
   const [location, setLocation] = useState("");
-  const [status, setStatus] = useState<"Common" | "Unique" | "Extinct" | "Endangered">("Common");
+  const [status, setStatus] = useState<
+    "Common" | "Unique" | "Extinct" | "Endangered"
+  >("Common");
   const [details, setDetails] = useState("");
   const [contributor, setContributor] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -39,7 +58,9 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
     }
 
     // Default placeholder bird image if none is provided
-    const finalImage = imageUrl.trim() || "https://images.unsplash.com/photo-1475809913362-28a064062ccd?auto=format&fit=crop&w=800&q=80";
+    const finalImage =
+      imageUrl.trim() ||
+      "https://images.unsplash.com/photo-1475809913362-28a064062ccd?auto=format&fit=crop&w=800&q=80";
 
     onAdd({
       name,
@@ -52,7 +73,7 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
     });
 
     toast.success(`${name} has been added to the flyway!`);
-    
+
     // Reset form
     setName("");
     setScientificName("");
@@ -73,33 +94,40 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
             Log a Feathered Wonder
           </DialogTitle>
           <DialogDescription className="font-sans text-muted-foreground">
-            Share a real or hypothetical bird sighting, complete with habitats, unique features, or extinct statuses.
+            Share a real or hypothetical bird sighting, complete with habitats,
+            unique features, or extinct statuses.
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 mt-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1 md:space-y-2">
-              <Label htmlFor="name" className="text-xs md:text-sm font-medium text-foreground/80">
+              <Label
+                htmlFor="name"
+                className="text-xs md:text-sm font-medium text-foreground/80"
+              >
                 Bird Name *
               </Label>
               <Input
                 id="name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={e => setName(e.target.value)}
                 placeholder="e.g. Flamingo Rose"
                 className="border-border/60 bg-card focus-visible:ring-primary rounded-xl"
                 required
               />
             </div>
             <div className="space-y-1 md:space-y-2">
-              <Label htmlFor="scientificName" className="text-xs md:text-sm font-medium text-foreground/80">
+              <Label
+                htmlFor="scientificName"
+                className="text-xs md:text-sm font-medium text-foreground/80"
+              >
                 Scientific Name
               </Label>
               <Input
                 id="scientificName"
                 value={scientificName}
-                onChange={(e) => setScientificName(e.target.value)}
+                onChange={e => setScientificName(e.target.value)}
                 placeholder="e.g. Phoenicopterus roseus"
                 className="border-border/60 bg-card focus-visible:ring-primary rounded-xl italic"
               />
@@ -108,24 +136,36 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1 md:space-y-2">
-              <Label htmlFor="location" className="text-xs md:text-sm font-medium text-foreground/80">
+              <Label
+                htmlFor="location"
+                className="text-xs md:text-sm font-medium text-foreground/80"
+              >
                 Main Habitat / Location *
               </Label>
               <Input
                 id="location"
                 value={location}
-                onChange={(e) => setLocation(e.target.value)}
+                onChange={e => setLocation(e.target.value)}
                 placeholder="e.g. Lake Nakuru, Kenya"
                 className="border-border/60 bg-card focus-visible:ring-primary rounded-xl"
                 required
               />
             </div>
             <div className="space-y-1 md:space-y-2">
-              <Label htmlFor="status" className="text-xs md:text-sm font-medium text-foreground/80">
+              <Label
+                htmlFor="status"
+                className="text-xs md:text-sm font-medium text-foreground/80"
+              >
                 Status *
               </Label>
-              <Select value={status} onValueChange={(val: any) => setStatus(val)}>
-                <SelectTrigger id="status" className="border-border/60 bg-card focus-visible:ring-primary rounded-xl">
+              <Select
+                value={status}
+                onValueChange={(val: any) => setStatus(val)}
+              >
+                <SelectTrigger
+                  id="status"
+                  className="border-border/60 bg-card focus-visible:ring-primary rounded-xl"
+                >
                   <SelectValue placeholder="Select Status" />
                 </SelectTrigger>
                 <SelectContent className="border-border bg-card">
@@ -139,14 +179,17 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
           </div>
 
           <div className="space-y-1 md:space-y-2">
-            <Label htmlFor="imageUrl" className="text-xs md:text-sm font-medium text-foreground/80">
+            <Label
+              htmlFor="imageUrl"
+              className="text-xs md:text-sm font-medium text-foreground/80"
+            >
               Image URL
             </Label>
             <div className="relative">
               <Input
                 id="imageUrl"
                 value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
+                onChange={e => setImageUrl(e.target.value)}
                 placeholder="Paste an Unsplash, Pinterest, or custom photo link"
                 className="border-border/60 bg-card focus-visible:ring-primary rounded-xl pl-9"
               />
@@ -155,13 +198,16 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
           </div>
 
           <div className="space-y-1 md:space-y-2">
-            <Label htmlFor="details" className="text-xs md:text-sm font-medium text-foreground/80">
+            <Label
+              htmlFor="details"
+              className="text-xs md:text-sm font-medium text-foreground/80"
+            >
               Feather Details & Fascinating Facts *
             </Label>
             <Textarea
               id="details"
               value={details}
-              onChange={(e) => setDetails(e.target.value)}
+              onChange={e => setDetails(e.target.value)}
               placeholder="Describe its behavior, unique features, plumage details, or historical background..."
               className="border-border/60 bg-card focus-visible:ring-primary rounded-xl min-h-[100px] resize-none"
               required
@@ -169,13 +215,16 @@ export default function AddBirdDialog({ isOpen, onClose, onAdd }: AddBirdDialogP
           </div>
 
           <div className="space-y-1 md:space-y-2">
-            <Label htmlFor="contributor" className="text-xs md:text-sm font-medium text-foreground/80">
+            <Label
+              htmlFor="contributor"
+              className="text-xs md:text-sm font-medium text-foreground/80"
+            >
               Your Name / Contributor Signature
             </Label>
             <Input
               id="contributor"
               value={contributor}
-              onChange={(e) => setContributor(e.target.value)}
+              onChange={e => setContributor(e.target.value)}
               placeholder="e.g. Sofia from Munich"
               className="border-border/60 bg-card focus-visible:ring-primary rounded-xl"
             />
